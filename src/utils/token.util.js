@@ -20,3 +20,16 @@ export const sign = async (payload, expiresIn, secret) => {
     );
   });
 };
+
+export const verify = async (token, secret) => {
+  return new Promise((reslove, reject) => {
+    jwt.verify(token, secret, (error, payload) => {
+      if (error) {
+        logger.error(error);
+        reslove(null);
+      } else {
+        reslove(payload);
+      }
+    })
+  })
+}
