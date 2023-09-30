@@ -5,7 +5,7 @@ import { login, logout, refreshToken, register } from "../controllers/auth.contr
 const router = express.Router();
 
 router.route("/register").post(trimRequest.all, register);
-router.route("/logn").post(trimRequest.all, login);
+router.route("/login").post(trimRequest.all, login);
 router.route("/logout").post(trimRequest.all, logout);
 router.route("/refreshToken").post(trimRequest.all, refreshToken);
 
