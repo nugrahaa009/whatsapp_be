@@ -1,6 +1,6 @@
 import createHttpError from "http-errors";
 import logger from "../configs/logger.config.js";
-import { createConversation, doesConversationExist, populatedConversation } from "../services/conversation.service.js";
+import { createConversation, doesConversationExist, getUserConversations, populatedConversation } from "../services/conversation.service.js";
 import { findUser } from "../services/user.service.js";
 
 export const create_open_conversation = async (req, res, next) => {
@@ -24,9 +24,19 @@ export const create_open_conversation = async (req, res, next) => {
         users: [sender_id, receiver_id],
       };
       const newConvo = await createConversation(convoData);
-      const populatedConvo = await populatedConversation(newConvo._id, "users", "-password")
+      const populatedConvo = await populatedConversation(newConvo._id, "users", "-password");
       res.status(200).json(populatedConvo);
     }
+  } catch (error) {
+    next(error)
+  }
+};
+
+export const getConversations = async (req, res, next) => {
+  try {
+    const user_id = req.user.userId;
+    const conversations = await getUserConversations(user_id);
+    res.status(200).json(conversations);
   } catch (error) {
     next(error)
   }
