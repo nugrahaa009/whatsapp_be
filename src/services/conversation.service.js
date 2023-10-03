@@ -58,3 +58,11 @@ export const getUserConversations = async (user_id) => {
   });
   return conversations;
 };
+
+export const updateLatestMessage = async (convo_id, msg) => {
+  const updateConvo = await ConversationModel.findByIdAndUpdate(convo_id, {
+    latestMessage: msg
+  });
+  if (!updateConvo) throw createHttpError.BadRequest("Opps...Something went wrong !");
+  return updateConvo;
+}
