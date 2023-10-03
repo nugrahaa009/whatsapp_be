@@ -70,13 +70,13 @@ export const login = async (req, res, next) => {
 
     res.json({
       message: "Login success",
-      access_token,
       user: {
         _id: user._id,
         name: user.name,
         email: user.email,
         picture: user.picture,
         status: user.status,
+        access_token,
       }
     });
 
