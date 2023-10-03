@@ -6,6 +6,6 @@ import { sendMessage, getMessages } from "../controllers/message.controller.js";
 const router = express.Router();
 
 router.route("/").post(trimRequest.all, authMiddleware, sendMessage);
-router.route("/:convo:id").get(trimRequest.all, authMiddleware, getMessages);
+router.route("/:convo_id").get(trimRequest.all, authMiddleware, getMessages);
 
 export default router;
