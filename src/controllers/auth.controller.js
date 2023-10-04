@@ -76,7 +76,7 @@ export const login = async (req, res, next) => {
         email: user.email,
         picture: user.picture,
         status: user.status,
-        access_token,
+        token: access_token,
       }
     });
 
@@ -112,13 +112,13 @@ export const refreshToken = async (req, res, next) => {
     );
       
     res.json({
-      access_token,
       user: {
         _id: user._id,
         name: user.name,
         email: user.email,
         picture: user.picture,
         status: user.status,
+        token: user.access_token,
       }
     });
 
