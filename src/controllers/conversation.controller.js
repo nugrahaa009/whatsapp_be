@@ -1,7 +1,7 @@
 import createHttpError from "http-errors";
 import logger from "../configs/logger.config.js";
-import { createConversation, doesConversationExist, getUserConversations, populatedConversation } from "../services/conversation.service.js";
 import { findUser } from "../services/user.service.js";
+import { createConversation, doesConversationExist, getUserConversations, populatedConversation } from "../services/conversation.service.js";
 
 export const create_open_conversation = async (req, res, next) => {
   try {
@@ -20,6 +20,7 @@ export const create_open_conversation = async (req, res, next) => {
       let reciver_user = await findUser(receiver_id)
       let convoData = {
         name: reciver_user.name,
+        picture: reciver_user.picture,
         isGroup: false,
         users: [sender_id, receiver_id],
       };
